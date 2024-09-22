@@ -1,0 +1,101 @@
+/* Dark theme general styling */
+.dark-theme {
+  --ion-background-color: #1e1e2e;
+  --ion-text-color: #ffffff;
+  color: #ffffff;
+  background-color: #1e1e2e;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Header title styling */
+.header-title {
+  text-align: center;
+  color: #e0e0f0;
+  font-size: 24px;
+  font-weight: bold;
+  padding-top: 20px;
+}
+
+/* Main container layout centered on the screen */
+.info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 600px; /* Define un ancho máximo */
+  width: 100%; /* Ocupa el 100% del contenedor disponible */
+  margin: 0 auto; /* Asegura que esté centrado horizontalmente */
+  padding: 20px;
+  background-color: #29293b;
+  border-radius: 10px;
+}
+
+/* Left column (radio buttons) */
+.radio-column {
+  width: 100%; /* Ajusta el ancho para que ocupe todo el contenedor */
+  margin-bottom: 20px;
+}
+
+/* Right column (form inputs) */
+.form-column {
+  width: 100%; /* Ajusta el ancho para que ocupe todo el contenedor */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Radio buttons styling */
+.radio-item {
+  --ion-radio-checked-color: #7f88ff;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+/* Input fields styling */
+.custom-input {
+  width: 100%;
+  margin-bottom: 1px !important; /* Aumenta el margen inferior */
+  background-color: #1e1e2e;
+  border: 1px solid #444;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+
+.custom-label {
+  width: 100%;
+  margin-bottom:0px !important;
+  color: #ffffff;
+  border-radius: 10px;
+}
+
+
+/* Ajustar la posición del label flotante */
+.custom-label {
+  color: #ffffff; /* Color del texto */
+  transition: transform 0.3s ease; /* Añadir una transición suave */
+  margin-bottom: -30px;
+}
+
+
+/* Button section styling */
+.button-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.custom-button {
+  background-color: #847ab9 !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: white !important;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}

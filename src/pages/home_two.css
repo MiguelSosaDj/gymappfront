@@ -1,0 +1,151 @@
+/* General dark theme */
+.dark-theme {
+    --ion-background-color: #1e1e2e;
+    --ion-text-color: #ffffff;
+    color: var(--ion-text-color);
+    background-color: var(--ion-background-color);
+    padding: 20px;
+    border-radius: 15px;
+  }
+  
+  /* Toolbar styling */
+  .toolbar {
+    background-color: #29293b;
+    color: #ffffff;
+    padding: 10px 20px;
+  }
+  
+  .toolbar .logout-button {
+    color: #7f88ff;
+    font-size: 16px;
+  }
+  
+  /* Section for category and person select */
+  .section-select {
+    margin-bottom: 20px;
+  }
+  
+  .section-select ion-label {
+    color: #7f88ff;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .section-select ion-select {
+    background-color: #29293b;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  /* Form container and layout */
+  .form-container {
+    background-color: #29293b;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+  }
+  
+  .form-title {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+  }
+  
+  /* Form fields layout */
+  .form-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #1e1e2e;
+  }
+  
+  .form-label {
+    font-size: 14px;
+    color: #7f88ff;
+    font-weight: bold;
+  }
+  
+  .form-input {
+    background-color: #1e1e2e;
+    color: #ffffff;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #3d3d5c;
+  }
+  
+  .form-input:disabled {
+    opacity: 0.7;
+  }
+  
+  /* Button container */
+  .button-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .button {
+    padding: 12px 20px;
+    background-color: #7f88ff;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #6c77e0;
+  }
+  
+  /* Card styling */
+  .card {
+    background-color: #29293b;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: #ffffff;
+  }
+  
+  .card-title {
+    font-size: 20px;
+    color: #7f88ff;
+  }
+  
+  .card-subtitle {
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+  
+  /* Custom select dropdowns */
+  .ion-select {
+    background-color: #29293b;
+    color: white;
+  }
+  
+  .ion-select-option {
+    background-color: #29293b;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  /* Hover and focus effects */
+  .form-input:hover,
+  .form-input:focus {
+    border-color: #7f88ff;
+  }
+  
+  .button:hover {
+    background-color: #6c77e0;
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+  }
+  

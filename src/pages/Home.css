@@ -1,0 +1,84 @@
+.login-page {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100vh !important;
+    background: linear-gradient(to bottom, #847ab9, #000000) !important; /* Cambiar a 'background' */
+  }
+  
+  .header-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    margin-bottom: 20px !important;
+  }
+  
+  
+  .logo {
+    width: 100px !important;
+    height: auto !important;
+    margin-bottom: 20px !important;
+  }
+  
+  .welcome-text {
+    font-size: 40px !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+  }
+  
+  .login-container {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background-color: #FFFFFF !important;
+    padding: 30px 20px !important;
+    border-radius: 25px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+  }
+  .button-inner {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: white !important;  /* Si deseas cambiar el color del texto */
+    background-color: #847ab9 !important;background: #847ab9 !important;
+  }
+  .button-native {
+    background-color: transparent !important;
+    border: none !important;
+    background-color: #847ab9 !important;
+    background: #847ab9 !important;
+
+  }
+  
+  
+  .input {
+    margin-bottom: 15px !important;
+    background-color: #F3F3F3 !important;
+    border-radius: 10px !important;
+    padding: 12px !important;
+    border: 1px solid #CCC !important;
+    color: #333 !important;
+    width: 100% !important;
+    font-size: 16px !important;
+  }
+  
+  .button {
+    background-color: #847ab9 !important;
+    color: #FFFFFF !important;
+    width: 100% !important;
+    border-radius: 10px !important;
+    padding: 12px !important;
+    font-size: 16px !important;
+  }
+  .custom-button {
+    background-color: #847ab9 !important; /* Cambia el color de fondo */
+    border: none !important; /* Elimina el borde */
+    box-shadow: none !important; /* Elimina la sombra */
+    color: white !important; /* Cambia el color del texto */
+  }
+  
