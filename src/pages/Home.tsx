@@ -21,11 +21,14 @@ import {
 import { logOutOutline } from 'ionicons/icons';
 import { useHistory } from 'react-router-dom';
 import './home_two.css';
+import './BajoPesoModal.css';
+
 
 // Importar modales
 import LactanteModal from './LactanteModal';
 import NinoModal from './NinoModal';
 import GestanteBajoPesoModal from './GestanteBajoPesoModal';
+import GestanteSobrePesoModal from './GestanteSobrePesoModal';
 
 interface Persona {
   id: number;
@@ -42,7 +45,10 @@ interface GestanteInfo {
   imcPregestacional: string;
   imcGestacional: string;
   semanaGestacion: number;
+  seleccion_multiple: string;
+
 }
+
 
 interface LactanteInfo {
   nombre: string;
@@ -173,7 +179,7 @@ const Home: React.FC = () => {
       }
 
       axios
-        .get(`http://192.168.1.77:8000/api/home-data/`, {
+        .get(`http://192.168.1.3:8000/api/home-data/`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -199,15 +205,15 @@ const Home: React.FC = () => {
       const persona = personas.find((p) => p.id === selectedPersona);
 
       if (categoria === 'gestante') {
-        setGestanteInfo(persona as GestanteInfo);
+        setGestanteInfo(persona as unknown as GestanteInfo);
         setLactanteInfo(null);
         setNinoInfo(null);
       } else if (categoria === 'lactante') {
-        setLactanteInfo(persona as LactanteInfo);
+        setLactanteInfo(persona as unknown as LactanteInfo);
         setGestanteInfo(null);
         setNinoInfo(null);
       } else if (categoria === 'nino') {
-        setNinoInfo(persona as NinoInfo);
+        setNinoInfo(persona as unknown as NinoInfo);
         setGestanteInfo(null);
         setLactanteInfo(null);
       }
@@ -233,10 +239,12 @@ const Home: React.FC = () => {
 
   const handleSubmitGestante = async () => {
     const token = localStorage.getItem('access_token');
+  
     if (!gestanteInfo) {
       alert('No hay información de gestante disponible para guardar.');
       return;
     }
+  
     const data = {
       identificacion: gestanteInfo.identificacion,
       nombre: gestanteInfo.nombre,
@@ -247,14 +255,15 @@ const Home: React.FC = () => {
       imc_pregestacional: gestanteInfo.imcPregestacional,
       imc_gestacional: gestanteInfo.imcGestacional,
       semana_gestacion: gestanteInfo.semanaGestacion,
-      // Añade otros campos relevantes aquí para el cálculo y guardado de información
     };
+  
     if (!token) {
       alert('No se encontró un token de autenticación. Inicia sesión.');
       return;
     }
+  
     try {
-      await axios.post('http://192.168.1.77:8000/api/gestante/', data, {
+      await axios.post('http://192.168.1.3:8000/gestante/', data, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -266,7 +275,7 @@ const Home: React.FC = () => {
       alert('Error al guardar los datos de gestante');
     }
   };
-
+  
   const handleSubmitLactante = async () => {
     const token = localStorage.getItem('access_token');
 
@@ -299,7 +308,7 @@ const Home: React.FC = () => {
     }
 
     try {
-      await axios.post('http://192.168.1.77:8000/lactante/', data, {
+      await axios.post('http://192.168.1.3:8000/lactante/', data, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -312,7 +321,7 @@ const Home: React.FC = () => {
     }
   };
 
-  const calcularClasificacionPt = (valor) => {
+  const calcularClasificacionPt = (valor: string) => {
     if (valor === '> +3') return 'Obesidad';
     if (valor === '> +2 a ≤ +3') return 'Sobrepeso';
     if (valor === '> +1 a ≤ +2') return 'Riesgo de sobrepeso';
@@ -323,14 +332,14 @@ const Home: React.FC = () => {
     return 'No Aplica';
   };
 
-  const calcularClasificacionTe = (valor) => {
+  const calcularClasificacionTe = (valor: string) => {
     if (valor === '≥ -1') return 'Adecuado para la edad';
     if (valor === '≥ -2 a < -1') return 'Riesgo de talla baja';
     if (valor === '< -2') return 'Retraso en talla';
     return 'No Aplica';
   };
 
-  const calcularClasificacionPce = (valor) => {
+  const calcularClasificacionPce = (valor: string) => {
     if (valor === '> +2') return 'Riesgo para neurodesarrollo';
     if (valor === '≥ -2 a ≤ 2') return 'Normal';
     if (valor === '< -2') return 'Riesgo para neurodesarrollo';
@@ -363,14 +372,15 @@ const Home: React.FC = () => {
       clasificacion_pce: clasificacionPce,
       ganancia_peso_gr: parseFloat(gananciaPesoGr),
       calorias_1g_tejido: parseFloat(calorias1gTejido),
-      veces_que_gane: parseInt(vecesQueGane),
-      calorias_crecimiento: parseFloat(caloriasCrecimiento),
-      ajuste_deficit: parseFloat(ajusteDeficit),
-      kcal_totales: parseFloat(caloriasTotales),
-      leche_materna_exclusiva: parseFloat(lecheMaternaExclusiva),
-      formula_infantil: parseFloat(formulaInfantil),
-      leche_materna_y_formula: parseFloat(lecheMaternaYFormula),
-      rango_1_18_anos: parseFloat(rango1A18),
+      // Verificamos que los valores no sean nulos o indefinidos antes de convertirlos.
+      veces_que_gane: vecesQueGane ? parseInt(vecesQueGane.toString(), 10) : 0,
+      calorias_crecimiento: caloriasCrecimiento ? parseFloat(caloriasCrecimiento.toString()) : 0,
+      ajuste_deficit: ajusteDeficit ? parseFloat(ajusteDeficit.toString()) : 0,
+      kcal_totales: caloriasTotales ? parseFloat(caloriasTotales.toString()) : 0,
+      leche_materna_exclusiva: lecheMaternaExclusiva ? parseFloat(lecheMaternaExclusiva.toString()) : 0,
+      formula_infantil: formulaInfantil ? parseFloat(formulaInfantil.toString()) : 0,
+      leche_materna_y_formula: lecheMaternaYFormula ? parseFloat(lecheMaternaYFormula.toString()) : 0,
+      rango_1_18_anos: rango1A18 ? parseFloat(rango1A18.toString()) : 0,
     };
 
     if (!token) {
@@ -379,7 +389,7 @@ const Home: React.FC = () => {
     }
 
     try {
-      await axios.post('http://192.168.1.77:8000/api/nino-sano/', data, {
+      await axios.post('http://192.168.1.3:8000/api/nino-sano/', data, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -466,14 +476,23 @@ const Home: React.FC = () => {
                 <strong>Peso Actual:</strong> {gestanteInfo.peso_actual} kg
               </p>
               <p>
-                <strong>IMC Pregestacional:</strong> {gestanteInfo.imcPregestacional}
+                <strong>IMC Pregestacional:</strong> {gestanteInfo.imc_pregestacional}
               </p>
               <p>
-                <strong>IMC Gestacional:</strong> {gestanteInfo.imcGestacional}
+                <strong>IMC Gestacional:</strong> {gestanteInfo.imc_gestacional}
+                <strong>IMC Gestacional:</strong> {gestanteInfo.seleccion_multiple}
               </p>
-              <IonButton expand="full" onClick={handleGestanteInfo}>
-                Evaluación de Bajo Peso
-              </IonButton>
+              {gestanteInfo.seleccion_multiple === 'bajo_peso' && (
+                <IonButton expand="full" onClick={handleGestanteInfo}>
+                  Evaluación de Bajo Peso
+                </IonButton>
+              )}
+
+              {gestanteInfo.seleccion_multiple === 'Sobrepeso' && (
+                <IonButton expand="full" onClick={handleGestanteInfo}>
+                  Evaluación de Sobrepeso
+                </IonButton>
+              )}
             </IonCardContent>
           </IonCard>
         )}
@@ -600,7 +619,12 @@ const Home: React.FC = () => {
         onClose={() => setIsModalGestanteOpen(false)}
         gestanteInfo={gestanteInfo} // Información de la gestante
         setGestanteInfo={setGestanteInfo} // Para actualizar la información
-        handleSubmit={handleSubmitGestante} // Función para enviar los datos
+      />
+       <GestanteSobrePesoModal
+        isOpen={isModalGestanteOpen}
+        onClose={() => setIsModalGestanteOpen(false)}
+        gestanteInfo={gestanteInfo} // Información de la gestante
+        setGestanteInfo={setGestanteInfo} // Para actualizar la información
       />
 
 

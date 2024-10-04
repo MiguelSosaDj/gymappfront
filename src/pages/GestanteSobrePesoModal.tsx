@@ -33,7 +33,7 @@ interface GestanteInfo {
   imc_pregestacional_cat: string;
 }
 
-interface BajoPesoModalProps {
+interface SobrePesoModalProps {
   isOpen: boolean;
   onClose: () => void;
   gestanteInfo: GestanteInfo | null;
@@ -57,7 +57,7 @@ const inputStyleEditable = {
 
 
 
-const GestanteBajoPesoModal: React.FC<BajoPesoModalProps> = ({
+const GestanteSobrePesoModal: React.FC<SobrePesoModalProps> = ({
   isOpen,
   onClose,
   gestanteInfo,
@@ -96,86 +96,86 @@ const GestanteBajoPesoModal: React.FC<BajoPesoModalProps> = ({
 
 
   const handleSubmit = async () => {
-  if (gestanteInfo) {
-    const postData = {
-      identificacion: gestanteInfo.identificacion,
-      nombre: gestanteInfo.nombre,
-      edad: gestanteInfo.edad,
-      estatura: gestanteInfo.estatura,
-      peso_actual: gestanteInfo.peso_actual,
-      peso_pregestacional: gestanteInfo.peso_pregestacional,
-      imc_pregestacional: gestanteInfo.imc_pregestacional,
-      imc_gestacional: gestanteInfo.imc_gestacional,
-      semana_gestacion: gestanteInfo.semana_gestacion,
-      imc_pregestacional_cat: gestanteInfo.imc_pregestacional_cat,
-
-      // Título 2: Peso de referencia
-      imc_saludable: imcSaludable,
-      peso_pregestacional_saludable: pesoPregestacionalSaludable,
-
-      // Título 3: Ganancia de peso
-      gramos_semana: gramosSemana,
-      ganancia_1_trimestre: gananciaPrimerTrimestre,
-      ganancia_2_y_3_trimestre_gramos: ganancia2y3TrimestreG,
-      ganancia_2_y_3_trimestre_kg: ganancia2y3TrimestreKg,
-      peso_total_embarazo: pesoTotalEmbarazoTitulo3,
-      peso_final: (ganancia2y3TrimestreKg + gananciaPrimerTrimestre).toFixed(1),
-
-      // Título 4: % de peso pregestacional saludable
-      ganancia_peso_embarazo: gananciaPesoEmbarazo, // Campo 1
-      ganancia_peso_clasificacion: g_peso_cla, // Campo 2
-      ganancia_primer_trimestre: gananciaPrimerTrimestre2, // Campo 3
-      ganancia_2y3_trimestre_gsem: ((gananciaPesoEmbarazo - gananciaPrimerTrimestre2) / 27 * 1000).toFixed(2), // Campo 4
-      peso_total_embarazo_titulo_4: pesoTotalEmbarazoTitulo4.toFixed(0), // Campo 5
-      imc_semana_40: (gestanteInfo?.estatura ? (gestanteInfo.peso_pregestacional + gananciaPesoEmbarazo) / (gestanteInfo.estatura) ** 2 : 0).toFixed(0), // Campo 6
-
-      // Título 5: Evaluación de ganancia de peso
-      ganancia_tipo: gananciaTipo, // Campo 1
-      gano: ganado.toFixed(0), // Campo 2
-      debio_ganar: debioGanar.toFixed(0), // Campo 3
-
-      // Título 6: Reprogramación
-      peso_a_ganar: pesoAGanar.toFixed(1), // Campo 1
-      semanas_faltantes: semanasFaltantes, // Campo 2
-      gramos_por_semana: gramosPorSemana.toFixed(0), // Campo 3
-      clasificacion_gramos: clasificacionGramos, // Campo 4
-
-      // Título 7: Requerimiento de energía
-      tasa_metabolica: tasaMetabolica,
-      factor_actividad_fisica: factorActividadFisica,
-      requerimiento_energia_total: requerimientoEnergia,
-      adicion_gestante: adicionGestante,
-      total_energia_adicion: (requerimientoEnergia + adicionGestante).toFixed(1),
-
-      // Título 8: Aporte proteico
-      metodo1_g_dia: metodo1GDia,
-      metodo1_kcal: metodo1Kcal,
-      metodo1_amdr: metodo1Amdr,
-      metodo2_g_dia: metodo2GDia,
-      metodo2_kcal: metodo2Kcal,
-      metodo2_amdr: metodo2Amdr,
-    };
-
-    try {
-      const response = await fetch('http://192.168.1.3:8000/gestante/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(postData),
-      });
-
-      if (response.ok) {
-        console.log('Datos guardados correctamente');
-      } else {
-        console.error('Error al guardar los datos');
+    if (gestanteInfo) {
+      const postData = {
+        identificacion: gestanteInfo.identificacion,
+        nombre: gestanteInfo.nombre,
+        edad: gestanteInfo.edad,
+        estatura: gestanteInfo.estatura,
+        peso_actual: gestanteInfo.peso_actual,
+        peso_pregestacional: gestanteInfo.peso_pregestacional,
+        imc_pregestacional: gestanteInfo.imc_pregestacional,
+        imc_gestacional: gestanteInfo.imc_gestacional,
+        semana_gestacion: gestanteInfo.semana_gestacion,
+        imc_pregestacional_cat: gestanteInfo.imc_pregestacional_cat,
+  
+        // Título 2: Peso de referencia
+        imc_saludable: imcSaludable,
+        peso_pregestacional_saludable: pesoPregestacionalSaludable,
+  
+        // Título 3: Ganancia de peso
+        gramos_semana: gramosSemana,
+        ganancia_1_trimestre: gananciaPrimerTrimestre,
+        ganancia_2_y_3_trimestre_gramos: ganancia2y3TrimestreG,
+        ganancia_2_y_3_trimestre_kg: ganancia2y3TrimestreKg,
+        peso_total_embarazo: pesoTotalEmbarazoTitulo3,
+        peso_final: (ganancia2y3TrimestreKg + gananciaPrimerTrimestre).toFixed(1),
+  
+        // Título 4: % de peso pregestacional saludable
+        ganancia_peso_embarazo: gananciaPesoEmbarazo, // Campo 1
+        ganancia_peso_clasificacion: g_peso_cla, // Campo 2
+        ganancia_primer_trimestre: gananciaPrimerTrimestre2, // Campo 3
+        ganancia_2y3_trimestre_gsem: ((gananciaPesoEmbarazo - gananciaPrimerTrimestre2) / 27 * 1000).toFixed(2), // Campo 4
+        peso_total_embarazo_titulo_4: pesoTotalEmbarazoTitulo4.toFixed(0), // Campo 5
+        imc_semana_40: (gestanteInfo?.estatura ? (gestanteInfo.peso_pregestacional + gananciaPesoEmbarazo) / (gestanteInfo.estatura) ** 2 : 0).toFixed(0), // Campo 6
+  
+        // Título 5: Evaluación de ganancia de peso
+        ganancia_tipo: gananciaTipo, // Campo 1
+        gano: ganado.toFixed(0), // Campo 2
+        debio_ganar: debioGanar.toFixed(0), // Campo 3
+  
+        // Título 6: Reprogramación
+        peso_a_ganar: pesoAGanar.toFixed(1), // Campo 1
+        semanas_faltantes: semanasFaltantes, // Campo 2
+        gramos_por_semana: gramosPorSemana.toFixed(0), // Campo 3
+        clasificacion_gramos: clasificacionGramos, // Campo 4
+  
+        // Título 7: Requerimiento de energía
+        tasa_metabolica: tasaMetabolica,
+        factor_actividad_fisica: factorActividadFisica,
+        requerimiento_energia_total: requerimientoEnergia,
+        adicion_gestante: adicionGestante,
+        total_energia_adicion: (requerimientoEnergia + adicionGestante).toFixed(1),
+  
+        // Título 8: Aporte proteico
+        metodo1_g_dia: metodo1GDia,
+        metodo1_kcal: metodo1Kcal,
+        metodo1_amdr: metodo1Amdr,
+        metodo2_g_dia: metodo2GDia,
+        metodo2_kcal: metodo2Kcal,
+        metodo2_amdr: metodo2Amdr,
+      };
+  
+      try {
+        const response = await fetch('http://192.168.1.3:8000/sobrepeso/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(postData),
+        });
+  
+        if (response.ok) {
+          console.log('Datos guardados correctamente');
+        } else {
+          console.error('Error al guardar los datos');
+        }
+      } catch (error) {
+        console.error('Error en la solicitud', error);
       }
-    } catch (error) {
-      console.error('Error en la solicitud', error);
     }
-  }
-};
-
+  };
+  
 
   // Cálculo de puntos para el gráfico
   useEffect(() => {
@@ -270,11 +270,11 @@ const GestanteBajoPesoModal: React.FC<BajoPesoModalProps> = ({
   let gananciaPeso = Math.round(pesoPregestacionalSaludable * 0.30); // Calcula la ganancia de peso
   let g_peso_cla;
 
-  if (gananciaPeso < 12) {
-    g_peso_cla = "Ganancia inadecuada por déficit";
-  } else if (gananciaPeso > 18) {
+  if (gananciaPeso <= 7) {
+    g_peso_cla = "Ganancia inadecuada por défit";
+  } else if (gananciaPeso >= 10) {
     g_peso_cla = "Ganancia inadecuada por exceso";
-  } else if (gananciaPeso >= 12 && gananciaPeso <= 18) {
+  } else if (gananciaPeso > 7 && gananciaPeso < 10) {
     g_peso_cla = "Adecuado";
   }
 
@@ -400,7 +400,7 @@ const GestanteBajoPesoModal: React.FC<BajoPesoModalProps> = ({
     <IonModal isOpen={isOpen} onDidDismiss={onClose}>
   <IonHeader>
     <IonToolbar>
-      <IonTitle>Bajo Peso - {gestanteInfo?.nombre}</IonTitle>
+      <IonTitle>Sobre Peso - {gestanteInfo?.nombre}</IonTitle>
     </IonToolbar>
   </IonHeader>
   <IonContent>
@@ -825,5 +825,5 @@ const GestanteBajoPesoModal: React.FC<BajoPesoModalProps> = ({
   );
 };
 
-export default GestanteBajoPesoModal;
+export default GestanteSobrePesoModal;
 

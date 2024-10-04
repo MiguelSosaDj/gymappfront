@@ -26,11 +26,11 @@ const AdditionalInfo = () => {
     let url = '';
   
     if (userType === 'niño') {
-      url = 'http://192.168.1.77:8000/api/save-nino-info/';
+      url = 'http://192.168.1.3:8000/api/save-nino-info/';
     } else if (userType === 'lactante') {
-      url = 'http://192.168.1.77:8000/api/save-lactante-info/';
+      url = 'http://192.168.1.3:8000/api/save-lactante-info/';
     } else if (userType === 'gestante') {
-      url = 'http://192.168.1.77:8000/api/save-gestante-info/';
+      url = 'http://192.168.1.3:8000/api/save-gestante-info/';
     }
   
     try {

@@ -5,10 +5,16 @@
 import '@testing-library/jest-dom/extend-expect';
 
 // Mock matchmedia
-window.matchMedia = window.matchMedia || function() {
+window.matchMedia = jest.fn().mockImplementation((query) => {
   return {
-      matches: false,
-      addListener: function() {},
-      removeListener: function() {}
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: () => {},
+    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    dispatchEvent: () => false
   };
-};
+});
+

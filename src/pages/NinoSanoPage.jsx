@@ -10,7 +10,7 @@ const NinoSanoPage = () => {
   useEffect(() => {
     const fetchBaseInfo = async () => {
       try {
-        const response = await axios.get(`192.168.1.77:8000/api/nino-info/${nino_id}`); // Usamos nino_id
+        const response = await axios.get(`http://192.168.1.3:8000/api/nino-info/${nino_id}`); // Usamos nino_id
         setBaseInfo(response.data);
       } catch (error) {
         console.error('Error fetching base info:', error);
